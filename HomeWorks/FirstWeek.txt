@@ -1,0 +1,5 @@
+Implement my own math class with methods. 
+ Calculate The Triangle Area 
+ Calculate the perimeter of a triagle.
+ Move Triangle in x, y. 
+ Rotate the Triangle given a value in grades or radians!

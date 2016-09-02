@@ -7,97 +7,131 @@
 % CC BY-NC-SA 3.0 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %----------------------------------------
-%   PACKAGES AND DOCUMENT CONFIGURATIONS
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
 %---------------------------------------
-\documentclass[paper=a4, fontsize=12pt]{article}        % A4 paper and 11pt font size
-\usepackage[T1]{fontenc}                                % Use 8-bit encoding that has 256 glyphs
-%\usepackage{fourier}                                   % Use the Adobe Utopia font for the document 
-\usepackage[spanish,english]{babel}                     % Spanish Language, templates uses some sections in english.
-\selectlanguage{spanish}                                % main language.
+\documentclass[paper=a4, fontsize=12pt]{article} 		% A4 paper and 11pt font size
+\usepackage[T1]{fontenc} 								% Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier}		 							% Use the Adobe Utopia font for the document 
+\usepackage[spanish,english]{babel}						% Spanish Language, templates uses some sections in english.
+\selectlanguage{spanish}								% main language.
 \PassOptionsToPackage{spanish}{babel}
-%\renewcommand{\figurename}{Figura}                     % Force rename of figure.
+%\renewcommand{\figurename}{Figura}						% Force rename of figure.
 %\renewcommand{\figurename}{Fig.}
 \usepackage[figurename=Fig.]{caption}
-\usepackage[utf8]{inputenc}                             % tildes for spanish language.
-\usepackage{amsmath,amsfonts,amsthm}                    % Math packages.
-\usepackage{minted}                                     % For syntax highlighting.
-\usepackage{float}                                      % Image will be in the same place as you want.!!! x-/
-\usepackage{sectsty}                                    % Allows customizing section commands
-\allsectionsfont{\centering \normalfont\scshape}        % Make all sections centered, the default font and small caps
+\usepackage[utf8]{inputenc}								% tildes for spanish language.
+\usepackage{amsmath,amsfonts,amsthm} 					% Math packages.
+\usepackage{minted}										% For syntax highlighting.
+\usepackage{float}										% Image will be in the same place as you want.!!! x-/
+\usepackage{sectsty} 									% Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape}	   	% Make all sections centered, the default font and small caps
 \usepackage{hyperref}
-\hypersetup{                                            %Setups the false color and borders.
+\hypersetup{											%Setups the false color and borders.
     colorlinks=false,
     pdfborder={0 0 0},
 }
-\newcommand\fnurl[2]{%                                  % set a simple and quick footnote command and include url.
-\href{#2}{#1}\footnote{\url{#2}}%   
+\newcommand\fnurl[2]{%									% set a simple and quick footnote command and include url.
+\href{#2}{#1}\footnote{\url{#2}}%	
 }
-\usepackage{graphicx}                                   % Import easyly images.
-\graphicspath{ {./images/} }                            % Where to look for the images.
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}              % Graphics Extension to be used
-\usepackage[notes,backend=biber]{biblatex-chicago}      % Bibliography and references.
-\bibliography{biblio}                                   % bibliography filename.
-\usepackage{fancyhdr}                                   % Custom headers and footers
-\pagestyle{fancyplain}                                  % Makes all pages in the document conform to the custom headers and footers
-\fancyhead{}                                            % No page header
-\fancyfoot[L]{}                                         % Empty left footer
-\fancyfoot[C]{}                                         % Empty center footer
-\fancyfoot[R]{\thepage}                                 % Page numbering for right footer
-\renewcommand{\headrulewidth}{0pt}                      % Remove header underlines
-\renewcommand{\footrulewidth}{0pt}                      % Remove footer underlines
-\setlength{\headheight}{13.6pt}                         % Customize the height of the header
-\numberwithin{equation}{section}                        % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-%\numberwithin{figure}{section}                         % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2)
-\numberwithin{table}{section}                           % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-\setlength\parindent{0pt}                               % Removes all indentation from paragraphs
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}         % Create horizontal rule command with 1 argument of height
+\usepackage{graphicx}									% Import easyly images.
+\graphicspath{ {./images/} }							% Where to look for the images.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}				% Graphics Extension to be used
+\usepackage[notes,backend=biber]{biblatex-chicago}		% Bibliography and references.
+\bibliography{biblio}									% bibliography filename.
+\usepackage{fancyhdr} 									% Custom headers and footers
+\pagestyle{fancyplain} 									% Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} 											% No page header
+\fancyfoot[L]{} 										% Empty left footer
+\fancyfoot[C]{} 										% Empty center footer
+\fancyfoot[R]{\thepage} 								% Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} 						% Remove header underlines
+\renewcommand{\footrulewidth}{0pt} 						% Remove footer underlines
+\setlength{\headheight}{13.6pt} 					    % Customize the height of the header
+\numberwithin{equation}{section}						% Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{figure}{section} 						% Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2)
+\numberwithin{table}{section} 							% Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\setlength\parindent{0pt} 								% Removes all indentation from paragraphs
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 		% Create horizontal rule command with 1 argument of height
 %%%%%%%%%%%%%%%%%%%%
 %Title Section
 %%%%%%%%%%%%%%%%%%%%%
 \title{Estructuras de Datos\\ 
-\horrule{0.5pt} \\[0.4cm]                               % Thin top horizontal rule  Title rule
+\horrule{0.5pt} \\[0.4cm] 								% Thin top horizontal rule	Title rule
 \textit{Vectores vs Arrays, Analisis de Algunas de sus Operaciones}
-\horrule{1pt} \\[0.5cm]             
-}           % Title
-\author{                                                % Authors begin.
+\horrule{1pt} \\[0.5cm] 			
+} 			% Title
+\author{												% Authors begin.
 Héctor F. \textsc{Jiménez S.}\\
 \texttt{hfjimenez@utp.edu.co} \\
-\texttt{PGP KEY ID: 0xB05AD7B8}}                                                       % End of  Author name
-\date{}                                                % Date for the report, this will hide the \today.
+\texttt{PGP KEY ID: 0xB05AD7B8}} 												       % End of  Author name
+\date{}    						                       % Date for the report, this will hide the \today.
 
 \begin{document}
-\maketitle                                             % Insert the title, author and date
+\maketitle                      			           % Insert the title, author and date
 \begin{center}
-\begin{tabular}{l r}                                   % two column to
-Fecha de Entrega: & Septiembre, 2016 \\                % Ramiro's Details.
+\begin{tabular}{l r}								   % two column to
+Fecha de Entrega: & Septiembre, 2016 \\				   % Ramiro's Details.
 Profesor: & Gustavo Adolfo Gutierrez Sabogal
 \end{tabular}
 \end{center}
-%%%%%%%%%%% 
+%%%%%%%%%%%	
 % Let's start the document.
-%%%%%%%%%%% 
+%%%%%%%%%%%	
 \section{Objetivos}
 \begin{itemize}
    \item Identificar las ventajas y desventajas de las diferentes estructuras de datos secuenciales.
   \item Identificar eficiencia, complejidad de las estructuras secuenciales: \textbf{\textit{arrays,y vectores}} 
   \item Expresar correctamente las nociones sobre las estructuras en el lenguaje de programacion c++, y el manejo de objetos.
 \end{itemize}
+En nuestro mundo de algoritmos vivimos y tatamos de subsistir para poder dar soluciones a una gran cantidad de problemas del mundo real, somos nosotros los que con ideas poderosas y abstractas las podemos convertir en magia para tratar esa gran cantidad de informacion que esta alli, sin importar el tipo de patron, dato o complejidad es necesario darle el respeto adecuado a los datos, por ello las estructuras de datos existen para brindarles el mejor cariño y manipulacion que nos permitan realizar un tratamiento correcto, eficiente y preciso en la medida posible. 
 
-Los \emph{arrays y vectores} ambos son estructuras de datos que permiten manipular datos en forma lineal dado que  los elementos se encuentran en una secuencia definidos por una funcion lineal que relaciona los elementos de estos. pueden tener una cantidad $n$ de elementos, si $n=0$ se afirma que se tiene una secuencia vacia. 
-%\centering
+En este informe se plasman algunos de los resultados que fueron observados en la implementacion de dos tipos de estructuras, especificamente de los muy famosos \emph{arrays y vectores} ambos son estructuras de datos que permiten manipular datos en forma lineal dado que  los elementos se encuentran en una secuencia definidos por una funcion lineal que relaciona los elementos de estos, exploraremos algunas de las operaciones que se realizan con ellas, y su eficiencia temporal y espacial.
 %     \includegraphics[width=0.5\textwidth]{imagenaqui.png}
 %  \caption{Reseña de titulo..}
 %    \label{fig:btn}
 %\end{figure}
 
-\section{Vectores vs Array, Analisis Temporal para \textit{n=100}}
+\section{Vectores vs Array}
+\subsection{Configuracion para el Laboratorio}
+El setup utilizado para realizar este laboratorio ha sido creado en un entorno virtualizado que posee las siguientes caracteristicas\footnote{La implementacion de este codigo puede ser realizada en cualquier arquitectura pues la complejidad que mas nos interesa es la temporal que me indica cuanto se demora un algoritmo en terminar.
+, nosotros hemos decido dar un tratamiento especial a la materia.} :
+\begin{itemize}
+\item \textbf{\textit{Sistema Operativo}}: Debian Gnu/Linux,Wheezy.
+\item \textbf{\textit{Cantidad de Memoria Ram}}:14GB
+\item \textbf{\textit{Procesador Usado}}:model name	: Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz
+\item \textbf{\textit{VCores Disponibles}}:2
+\item \textbf{\textit{Version Compilador}}:gcc version 5.4.0 
+\item \textbf{\textit{Arquitectura}}:X86\_64
+\end{itemize}
+\subsection{Operacion de Insercion}
+La operacion de insercion o su forma generalizada\textbf{add(\textit{n})} realizara la creacion de un vector de $n$ elementos, asignando a todos las posiciones un valor constante(\textrm{1}). Para poder obtener los valores de los tiempos se realizo la siguiente implemecion. 
+\begin{minted}{cpp}
+#include <stdio>
+int main(){
+main..//test minted 
+	}
+\end{minted}
+A continuacion se muestra los resutaldos obtenidos.
+\begin{table}[H]
+\centering
+\begin{tabular}{lllll}
+\cline{1-4}
+\multicolumn{1}{|l|}{n} & \multicolumn{1}{l|}{array} & \multicolumn{1}{l|}{vector} & \multicolumn{1}{l|}{diferencia} &  \\ \cline{1-4}
+\multicolumn{1}{|l|}{}  & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{}       & \multicolumn{1}{l|}{}           &  \\ \cline{1-4}
+\multicolumn{1}{|l|}{}  & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{}       & \multicolumn{1}{l|}{}           &  \\ \cline{1-4}
+                        &                            &                             &                                 & 
+\end{tabular}
+\caption{Cuadro de Resultados con valores de n aleatorios.}
+\label{insertion}
+\end{table}
+
+\subsubsection{Insercion con Politica de Crecimiento: default}
 \subsection{Código Implementado}
 Descripción del Pseudo código para el módulo anti rebote:
 \begin{minted}{cpp}
 #include <stdio>
 int main(){
 main..//test minted 
-    }
+	}
 \end{minted}
 
 \section{Resultados}

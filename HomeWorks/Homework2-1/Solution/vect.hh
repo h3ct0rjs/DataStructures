@@ -61,7 +61,7 @@ public:
     numResizes = numResizes + 1;
     // int nc = capacity * 2; // Diferentes politicas para hacer mi resize
     // int nc = capacity + ; // Pide espacio solo para una casilla demás
-    int nc = capacity + 1;
+    int nc = capacity * 1.5;
     /*  Politicas de Crecimiento.
      *  int n = capacity + 1;
      *  int nc = capacity * 2;

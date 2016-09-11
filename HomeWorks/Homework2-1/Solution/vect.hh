@@ -17,7 +17,9 @@ public:
     // allocates memory for an array of capacity elements.
     storage = new T[capacity];
   }
-
+ ~Vector(){
+   delete[] storage;
+ }
   int size() const {
     return sz;
   } // complejidad constante porque siempre que llamo a size hace una operación
@@ -43,7 +45,7 @@ public:
     capacity = capacity - 1; // se esta borrando un elemento
   }
 
-  //remove , moveoneleft, borrar b. 
+  //remove , moveoneleft, borrar b.
   void remove(int i) {
     assert(i >= 0 && i <= sz);
     moveOneLeft(i); // Se elimina el elemento especificado

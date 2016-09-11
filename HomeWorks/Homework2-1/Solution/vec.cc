@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  Vector<int> prueba = produce(200, 1000, 10000);
+  Vector<int> prueba = produce(200, 50000, 1000000);
   cout << "i";
   cout << "n-random";
   cout << "             ";

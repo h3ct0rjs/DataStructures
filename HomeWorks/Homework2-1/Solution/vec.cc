@@ -5,22 +5,23 @@
 using namespace std;
 
 int main() {
-  Vector<int> prueba = produce(200, 50000, 1000000);
-  cout << "i";
-  cout << "n-random";
-  cout << "             ";
-  cout << "VectorInsertion[ns]";
-  cout << "             ";
-  cout << "ArrayInsertion[ns]" << endl;
-  for (int i = 0; i < 200; i++) {
+  Vector<int> prueba = produce(100, 10000, 100000);
+  cout << "Random Values=100";
+  cout << "Normal Distribution Parameters"<<endl;
+  cout << "s=200,l=50000,u=1000000"<<endl;
+  cout<<"\t"<<"Array"<<"\tVector"<<endl;
+  for (int i = 0; i < 100; i++) {
     cout<< i <<" ";
     cout << prueba.get(i);
-    cout << " ";
-    testVector(prueba.get(i));
-    cout << " ";
+    cout <<"\n" <<endl;
+    for(int j=0;j<100;j++){
+      cout<<"t"<<j<<"\t";
     testArray(prueba.get(i));
-    cout << endl;
+    cout<< "\t";
+    testVector(prueba.get(i));
+      cout << endl;
   }
 
+  }
   return 0;
 }

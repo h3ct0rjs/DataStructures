@@ -3,55 +3,36 @@
 #include <cstdlib>
 #include <iostream>
 #include <random>
+//hfjimenez@utp.edu.co , camilo980818@gmail.com
+//Datastructure Class 2016-2. UTP
+//Porpouse: Implement my own vector class implementation.
 using namespace std;
+
 template <typename T> class Vector {
+
 private:
-  int sz;       // almacena cuantos elementos hay en mi vector
-  int capacity; // Dice cuantos elementos me caben en un vector, es el número de
-                // elementos hasta donde mi sec
-  T *storage;   // Dirección a un pedazo de memoria donde voy aguardar los
-  int numResizes; // este atributo nos va a servir para sacar conclusiones de
-                  // nuestro experimento                // elementos del vector
+  int sz;
+  int capacity;
+  T *storage;
+  int numResizes;
+
 public:
   Vector() : sz(0), capacity(4), numResizes(0) {
     // allocates memory for an array of capacity elements.
     storage = new T[capacity];
   }
- ~Vector(){
+
+ ~Vector(){     //destroy the storage allocation.
    delete[] storage;
  }
-  int size() const {
-    return sz;
-  } // complejidad constante porque siempre que llamo a size hace una operación
 
-  // Función para ahorrar memoria.
-  void borrarb() {
-    if (waste() > capacity / 3) {
-      int nc = (capacity - capacity / 3);
-      T *ns = new T[nc]; // Disminuyo el tamaño del arreglo para ahorrar memoria
-      for (int i = 0; i < sz; i++) // copio los elementos
-        ns[i] = storage[i];
-      delete[] storage; // Destruir la memoria utilizada anteriormente
-      capacity = nc;
-      storage = ns;
-      // comp
-    }
-  }
+  int size() const {return sz;}   //Complexity O(1)
 
-  void moveOneLeft(int i) {
+  void moveOneLeft(int i) {     //Complexity  O(n)
     for (int j = i; j < sz; j++)
       storage[j] = storage[j + 1];
-    sz = sz - 1; // sz es la cantidad de elementos que hay, se resta uno porque
-    capacity = capacity - 1; // se esta borrando un elemento
-  }
-
-  //remove , moveoneleft, borrar b.
-  void remove(int i) {
-    assert(i >= 0 && i <= sz);
-    moveOneLeft(i); // Se elimina el elemento especificado
-    borrarb();      // Resizing al array para ahorrar memoria
-    cout << "capacidad después de ahorrar memoria: " << capacity << endl;
-    cout << "Espacios no usados: " << capacity - sz << endl;
+    sz = sz - 1;
+    capacity = capacity - 1;
   }
 
   void moveOneRight(int i) {
@@ -61,35 +42,30 @@ public:
 
   void resize() {
     numResizes = numResizes + 1;
-    // int nc = capacity * 2; // Diferentes politicas para hacer mi resize
-    // int nc = capacity + ; // Pide espacio solo para una casilla demás
     int nc = capacity * 1.5;
-    /*  Politicas de Crecimiento.
-     *  int n = capacity + 1;
-     *  int nc = capacity * 2;
-     *  int nc = capacity * 3;
-     *  int nc = capacity * 1.8;
-     *  int nc = capacity * 1.5
-     * */
-    T *ns = new T[nc]; // le pido al sistema opertaivo mas espacio para un nuevo
-                       // arreglo
-    for (int i = 0; i < sz; i++) // copio los elementos
+    T *ns = new T[nc];
+    for (int i = 0; i < sz; i++)
       ns[i] = storage[i];
-    delete[] storage; // Destruir la memoria utilizada anteriormente
+
+    delete[] storage;
     storage = ns;
     capacity = nc;
-    // complejidad de resize lineal en el tamaño actual del arreglo
+
   }
 
   void add(int i, const T &x) { // esta función no retorna nada tengo que
     assert(i >= 0 && i <= sz);
     if (sz == capacity) {
-      resize(); //  array is full
+      resize();                 //  array is full
     }
     moveOneRight(i);
     storage[i] = x;
     sz = sz + 1; // verificar que i es válida             // no puedo colocar
                  // const porque va a cambiar
+  }
+
+  T pob_back(){
+    return storage[sz-1];//Return the last element in the vector list.
   }
 
   T get(int i) { return storage[i]; }
@@ -100,21 +76,29 @@ public:
     return numResizes;
   } // Devuelve el número de resizes, dice cuantas veces se hace resize para ese
   // vector
+
+
+    // Función para ahorrar memoria.
+void borrarb() {
+      if (waste() > capacity / 3) {
+        int nc = (capacity - capacity / 3);
+        T *ns = new T[nc]; // Disminuyo el tamaño del arreglo para ahorrar memoria
+        for (int i = 0; i < sz; i++) // copio los elementos
+          ns[i] = storage[i];
+        delete[] storage; // Destruir la memoria utilizada anteriormente
+        capacity = nc;
+        storage = ns;
+        // comp
+      }
+    }
+
+      void remove(int i) {
+        assert(i >= 0 && i <= sz);
+        moveOneLeft(i);
+        borrarb();
+      }
 };
 
-void arrayInsertion(int n) {
-  int *a = new int[n];
-  for (int i = 0; i < n; i++) {
-    a[i] = 1;
-  }
-}
-
-void vectorInsertion(int n) {
-  Vector<int> a;
-  for (int i = 0; i < n; i++) {
-    a.add(i, 1);
-  }
-}
 
 Vector<int> produce(int s, int l, int u) {
   random_device rd;
@@ -127,12 +111,27 @@ Vector<int> produce(int s, int l, int u) {
   return result;
 }
 
-void testVector(int n) {
-  Timer v("");
-  vectorInsertion(n);
+void arrayInsertion(int n) {
+  int *a = new int[n];
+  for (int i = 0; i < n; i++) {
+    a[i] = 1;
+  }
 }
 
 void testArray(int n) {
   Timer v("");
   arrayInsertion(n);
+
+}
+
+void vectorInsertion(int n) {
+  Vector<int> a;
+  for (int i = 0; i < n; i++) {
+    a.add(i, 1);
+  }
+
+}
+void testVector(int n) {
+  Timer v("");
+  vectorInsertion(n);
 }

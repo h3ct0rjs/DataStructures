@@ -1,0 +1,8 @@
+#include <iostream>
+#include "RBTs/RBT.hh"
+
+int main(){
+RBT <string> zoo;
+
+return 0;
+}
